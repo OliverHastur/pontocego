@@ -1,0 +1,29 @@
+name: Deploy Pontocego no GitHub Pages
+
+on:
+  push:
+    branches: ['main'] # Vai rodar sempre que você atualizar a branch principal
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js (Versão 20)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Build do projeto Vite
+        run: npm run build
+
+      - name: Publicar no GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist # O Vite joga os arquivos prontos nesta pasta
