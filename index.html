@@ -1,89 +1,106 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pontocego.oni | Portfólio de Crochê</title>
-    <link rel="icon" type="image/png" href="public/favicon.png">
-    <link rel="stylesheet" href="src/style.css">
-  </head>
-  <body>
-    <!-- TELA DE CARREGAMENTO -->
-<div id="preloader">
-  <h2 class="preloader-text">TECENDO FIO A FIO...</h2>
-</div>
+<head>
+  <meta charset="UTF-8" />
+  <!-- O ícone da aba do navegador (opcional, adicione um favicon.png na pasta public depois) -->
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pontocego.oni | Portfólio</title>
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
 
-    <!-- HERO SECTION -->
-    <header id="hero">
-      <button id="btn-adentrar">Adentrar</button>
-    </header>
+  <!-- 1. TELA DE CARREGAMENTO (GSAP) -->
+  <div id="preloader">
+    <h2 class="preloader-text">TECENDO FIO A FIO...</h2>
+  </div>
 
-    <!-- MAIN CONTENT -->
-    <main>
-      <!-- MENU DE FILTROS -->
-      <nav class="filtros">
-        <button class="filter-btn active" data-filter="todos">Todos</button>
-        <button class="filter-btn" data-filter="mascaras">Máscaras</button>
-        <button class="filter-btn" data-filter="vestuario">Vestuário</button>
-        <button class="filter-btn" data-filter="bolsas">Bolsas</button>
-        <button class="filter-btn" data-filter="decoracao">Decoração</button>
-      </nav>
+  <!-- 2. HERO SECTION (Entrada) -->
+  <section id="hero">
+    <!-- A logo é carregada automaticamente pelo CSS como background -->
+    <button id="btn-adentrar">Adentrar</button>
+  </section>
 
-      <!-- GALERIA -->
-      <section id="galeria" class="masonry-grid">
-        
-        <article class="item mascaras">
-          <img src="https://placehold.co/1080x1350/0d0d0d/8b0000?text=Hannya+Mask" alt="Máscara">
-          <div class="item-info">Hannya Clássica</div>
-        </article>
-
-        <article class="item vestuario">
-          <img src="https://placehold.co/1080x1350/1a1a1a/e0e0e0?text=Balaclava" alt="Balaclava">
-          <div class="item-info">Balaclava Urbana</div>
-        </article>
-
-        <article class="item decoracao">
-          <img src="https://placehold.co/1080x1080/1a1a1a/e0e0e0?text=Trilho+de+Mesa" alt="Trilho de Mesa">
-          <div class="item-info">Trilho de Mesa Dark</div>
-        </article>
-
-        <article class="item bolsas">
-          <img src="https://placehold.co/1080x1080/0d0d0d/8b0000?text=Tote+Bag" alt="Bolsa">
-          <div class="item-info">Tote Bag Estruturada</div>
-        </article>
-
-        <article class="item vestuario">
-          <img src="https://placehold.co/1080x1350/0d0d0d/8b0000?text=Top+Underground" alt="Top Crochê">
-          <div class="item-info">Top Underground</div>
-        </article>
-
-        <article class="item decoracao">
-          <img src="https://placehold.co/1080x1080/1a1a1a/8b0000?text=Sousplat" alt="Sousplat">
-          <div class="item-info">Sousplat Temático</div>
-        </article>
-
-        <article class="item mascaras">
-          <img src="https://placehold.co/1080x1350/1a1a1a/e0e0e0?text=Mascaras+Custom" alt="Máscara Custom">
-          <div class="item-info">Máscara Customizada</div>
-        </article>
-
-      </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
-      <p>Integrante do Grupo <strong>Frajolaria</strong></p>
-      <div class="redes">
-        <a href="#">@Pontocego.oni</a> | <a href="#">@Oni_san.tos</a>
+  <!-- 3. MANIFESTO / SOBRE -->
+  <section id="manifesto">
+    <div class="manifesto-content">
+      <h2 class="manifesto-title">O Manifesto</h2>
+      <div class="manifesto-text">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sit amet nisi a risus bibendum scelerisque. Proin fringilla, odio id vulputate tincidunt, diam eros interdum lectus, in imperdiet libero justo ac diam.
+        </p>
+        <p>
+          Nullam tristique turpis nec eros pretium, vitae dignissim mauris hendrerit. Aenean ultrices vehicula urna eu varius. Duis fermentum vulputate eleifend. Maecenas sed nisi efficitur, maximus metus id, auctor metus. 
+        </p>
+        <p>
+          Suspendisse potenti. Curabitur sed nisl non nunc tincidunt cursus. Fusce nec diam in velit feugiat pellentesque in nec elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.
+        </p>
       </div>
-    </footer>
+    </div>
+  </section>
 
-    <script type="module" src="./src/main.js"></script>
-    <!-- VISUALIZADOR DE IMAGEM (MODAL) -->
-<div id="lightbox" class="lightbox-hidden">
-  <span id="close-lightbox">&times;</span>
-  <img id="lightbox-img" src="" alt="Zoom da Peça">
-  <div id="lightbox-caption"></div>
-</div>
-  </body>
+  <!-- 4. SEÇÃO DA GALERIA -->
+  <section id="portfolio">
+    
+    <!-- MENU DE FILTROS -->
+    <div class="filtros">
+      <button class="filter-btn active" data-filter="todos">Obras</button>
+      <button class="filter-btn" data-filter="balaclavas">Balaclavas</button>
+      <button class="filter-btn" data-filter="bags">Bags</button>
+      <button class="filter-btn" data-filter="vestimentos">Vestimentos</button>
+      <button class="filter-btn" data-filter="decoracoes">Decorações</button>
+    </div>
+
+    <!-- GRID DE IMAGENS (Masonry) -->
+    <div class="masonry-grid">
+      
+      <!-- Exemplo 1: Vestimentos -->
+      <article class="item vestimentos">
+        <img src="https://placehold.co/600x800/111111/8b0000?text=Foto+Vestimento" alt="Vestimento de Crochê">
+        <div class="item-info">Vestimento Sombrio</div>
+      </article>
+      
+      <!-- Exemplo 2: Bag -->
+      <article class="item bags">
+        <img src="https://placehold.co/600x600/111111/e0e0e0?text=Foto+Bag" alt="Bag de Crochê">
+        <div class="item-info">Bag Noir</div>
+      </article>
+
+      <!-- Exemplo 3: Balaclava -->
+      <article class="item balaclavas">
+        <img src="https://placehold.co/600x900/111111/8b0000?text=Foto+Balaclava" alt="Balaclava Tática">
+        <div class="item-info">Balaclava Tática</div>
+      </article>
+
+      <!-- Exemplo 4: Decorações -->
+      <article class="item decoracoes">
+        <img src="https://placehold.co/600x700/111111/e0e0e0?text=Foto+Decoracao" alt="Decoração de Crochê">
+        <div class="item-info">Decoração Obscura</div>
+      </article>
+
+      <!-- Adicione quantos articles precisar copiando a estrutura acima -->
+
+    </div>
+  </section>
+
+  <!-- 5. FOOTER (Rodapé) -->
+  <footer>
+    <p>&copy; 2026 <strong>Pontocego.oni</strong>. Todos os fios reservados.</p>
+    <div class="redes">
+      <!-- Deixei preparado para quando formos adicionar os links oficiais -->
+      <a href="#" target="_blank">Instagram</a>
+      <a href="#" target="_blank">WhatsApp</a>
+    </div>
+  </footer>
+
+  <!-- 6. VISUALIZADOR DE IMAGENS (Modal Lightbox oculto por padrão) -->
+  <div id="lightbox" class="lightbox-hidden">
+    <span id="close-lightbox">&times;</span>
+    <img id="lightbox-img" src="" alt="Zoom da Peça">
+    <div id="lightbox-caption"></div>
+  </div>
+
+  <!-- SCRIPT DO VITE PARA O JS -->
+  <script type="module" src="src/main.js"></script>
+</body>
 </html>

@@ -111,13 +111,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // --- 6. NAVEGAÇÃO (SCROLL SUAVE) ---
+ // --- 6. NAVEGAÇÃO (SCROLL SUAVE) ---
   if (btnAdentrar) {
     btnAdentrar.addEventListener('click', () => {
-      window.scrollTo({ 
-        top: window.innerHeight, 
-        behavior: 'smooth' 
-      });
+      const manifestoSection = document.getElementById('manifesto');
+      if (manifestoSection) {
+        // Rola até o começo da seção do manifesto
+        manifestoSection.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+      }
     });
   }
 });
