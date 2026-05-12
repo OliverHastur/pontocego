@@ -16,6 +16,16 @@
   box-sizing: border-box;
 }
 
+/* Esconde o texto de carregamento que estava quebrando o layout */
+#preloader {
+  display: none !important;
+}
+
+/* Garante a cor exata no fundo para mesclar com a logo */
+#hero {
+  background-color: #080808 !important; 
+}
+
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
