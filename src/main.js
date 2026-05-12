@@ -12,10 +12,40 @@ document.addEventListener('DOMContentLoaded', () => {
   const lightboxCaption = document.getElementById('lightbox-caption');
   const closeLightbox = document.getElementById('close-lightbox');
 
-  // --- 2. ANIMAÇÃO DE ENTRADA (GSAP) ---
+  // --- 2. ANIMAÇÃO DE CARREGAMENTO (PRELOADER) ---
+  // Criamos uma "linha do tempo" para orquestrar a entrada
+  const tl = gsap.timeline();
+
+  tl.to(".preloader-text", {
+    opacity: 0.2,
+    duration: 0.6,
+    yoyo: true,       // Efeito "vai e volta" (piscar)
+    repeat: 3,        // Repete 3 vezes
+    ease: "power1.inOut"
+  })
+  .to("#preloader", {
+    y: "-100%",       // Puxa a tela preta inteira para cima (cortina abrindo)
+    duration: 1.2,
+    ease: "power3.inOut"
+  })
+  .from("#hero", {
+    opacity: 0,
+    scale: 1.05,      // Hannya dá um leve zoom out épico ao aparecer
+    duration: 1.5,
+    ease: "power2.out"
+  }, "-=0.8"); // Inicia um pouco antes da cortina terminar de subir
+
+  // Remove o preloader do caminho após a animação (evita travar cliques no site)
+  setTimeout(() => {
+    const preloader = document.getElementById('preloader');
+    if(preloader) preloader.style.display = 'none';
+  }, 3500);
+
+
+  // --- 3. ANIMAÇÃO DE ENTRADA DA GALERIA ---
   // Faz os itens da galeria surgirem em cascata suave
   gsap.to(".item", {
-    delay: 0.4,
+    delay: 2.5, // Aumentado para esperar o preloader terminar
     duration: 1.2,
     y: 0,
     opacity: 1, 
@@ -24,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     startAt: { y: 50 } 
   });
 
-  // --- 3. LÓGICA DE FILTROS ---
+  // --- 4. LÓGICA DE FILTROS ---
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
       // Atualiza estado visual dos botões
@@ -54,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- 4. LÓGICA DA LIGHTBOX (VISUALIZADOR) ---
+  // --- 5. LÓGICA DA LIGHTBOX (VISUALIZADOR) ---
   galleryItems.forEach(item => {
     item.addEventListener('click', () => {
       const imgSrc = item.querySelector('img').src;
@@ -81,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // --- 5. NAVEGAÇÃO (SCROLL SUAVE) ---
+  // --- 6. NAVEGAÇÃO (SCROLL SUAVE) ---
   if (btnAdentrar) {
     btnAdentrar.addEventListener('click', () => {
       window.scrollTo({ 

@@ -16,16 +16,6 @@
   box-sizing: border-box;
 }
 
-/* Esconde o texto de carregamento que estava quebrando o layout */
-#preloader {
-  display: none !important;
-}
-
-/* Garante a cor exata no fundo para mesclar com a logo */
-#hero {
-  background-color: #080808 !important; 
-}
-
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
@@ -33,12 +23,36 @@ body {
   overflow-x: hidden;
 }
 
-/* 3. HERO SECTION */
+/* 3. TELA DE CARREGAMENTO (PRELOADER) */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #050505; /* Preto profundo */
+  z-index: 9999; /* Fica acima de TUDO no site */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preloader-text {
+  font-family: var(--font-main);
+  font-size: 1.2rem;
+  color: var(--accent-color);
+  letter-spacing: 8px;
+  font-weight: 900;
+  text-transform: uppercase;
+  opacity: 1;
+}
+
+/* 4. HERO SECTION */
 #hero {
   height: 100vh;
   width: 100%;
   position: relative;
-  background-color: #080808;
+  background-color: #080808 !important; /* Mescla com a logo */
   background-image: url('/Logo.png');
   background-size: contain;
   background-position: center;
@@ -47,7 +61,7 @@ body {
 
 #btn-adentrar {
   position: absolute;
-  bottom: 9vh;
+  bottom: 9vh; /* Ajuste de altura que fizemos anteriormente */
   left: 50%;
   transform: translateX(-50%);
   padding: 12px 35px;
@@ -71,7 +85,7 @@ body {
   transform: translate(-50%, -5px);
 }
 
-/* 4. MENU DE FILTROS */
+/* 5. MENU DE FILTROS */
 .filtros {
   display: flex;
   justify-content: center;
@@ -98,7 +112,7 @@ body {
   color: #fff;
 }
 
-/* 5. GALERIA (Masonry) */
+/* 6. GALERIA (Masonry) */
 .masonry-grid {
   column-count: 3;
   column-gap: 1.5rem;
@@ -118,11 +132,9 @@ body {
   border-radius: 4px;
   background-color: var(--card-bg);
   cursor: pointer;
-  /* Estado inicial para o GSAP poder atuar */
   opacity: 0; 
 }
 
-/* Classes para o filtro */
 .item.hide { display: none !important; }
 .item.show { display: inline-block !important; width: 100%; }
 
@@ -150,7 +162,7 @@ body {
 .item:hover img { transform: scale(1.08); }
 .item:hover .item-info { transform: translateY(0); }
 
-/* 6. FOOTER */
+/* 7. FOOTER */
 footer {
   text-align: center;
   padding: 3rem 1rem;
@@ -170,14 +182,14 @@ footer strong { color: var(--accent-color); }
 }
 .redes a:hover { color: var(--accent-color); }
 
-/* 7. LIGHTBOX */
+/* 8. LIGHTBOX */
 #lightbox {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(8, 8, 8, 0.98); /* Fundo quase preto total */
+  background: rgba(8, 8, 8, 0.98); 
   display: flex;
   flex-direction: column;
   align-items: center;
