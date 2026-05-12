@@ -47,7 +47,7 @@ body {
 
 #btn-adentrar {
   position: absolute;
-  bottom: 5vh;
+  bottom: 9vh;
   left: 50%;
   transform: translateX(-50%);
   padding: 12px 35px;
