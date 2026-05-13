@@ -280,3 +280,76 @@ footer strong { color: var(--accent-color); }
   cursor: pointer;
   line-height: 1;
 }
+
+/* --- 9. CURSOR CUSTOMIZADO --- */
+/* Esconde o ponteiro padrão, mas deixa os cliques ativos */
+body, a, button, .item {
+  cursor: none !important; 
+}
+
+#custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10001;
+  transform: translate(-50%, -50%);
+}
+
+#cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(139, 0, 0, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, background-color 0.3s;
+}
+
+/* Expande o aro quando passamos o mouse em botões ou links */
+#cursor-follower.hover-active {
+  width: 65px;
+  height: 65px;
+  background-color: rgba(139, 0, 0, 0.1);
+}
+
+/* --- 10. EASTER EGG (SCANLINES DE CFTV) --- */
+#noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  /* Cria as listras de câmera de segurança via CSS puro */
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.4) 50%, /* Linha escura */
+    rgba(0, 0, 0, 0.4)
+  );
+  background-size: 100% 6px; /* Espessura das listras */
+}
+
+/* Quando ativo, as listras descem pela tela infinitamente */
+#noise-overlay.active {
+  opacity: 1;
+  animation: scanlineMove 8s linear infinite;
+}
+
+@keyframes scanlineMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100vh; }
+}

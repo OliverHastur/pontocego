@@ -123,4 +123,63 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // --- 7. CURSOR CUSTOMIZADO E EASTER EGG ---
+  const customCursor = document.getElementById('custom-cursor');
+  const cursorFollower = document.getElementById('cursor-follower');
+  const footerTrigger = document.querySelector('footer');
+  const noiseOverlay = document.getElementById('noise-overlay');
+
+  // Só ativa o cursor customizado em computadores (se tiver mouse)
+  if (window.matchMedia("(pointer: fine)").matches) {
+    // Liga o movimento do GSAP ao mouse
+    window.addEventListener('mousemove', (e) => {
+      // Ponto principal (segue na hora)
+      gsap.to(customCursor, { duration: 0, x: e.clientX, y: e.clientY });
+      // Aro sombrio (segue com rastro macio)
+      gsap.to(cursorFollower, { duration: 0.4, x: e.clientX, y: e.clientY, ease: "power2.out" });
+    });
+
+    // Detecta botões/links para expandir a "aura" do cursor
+    const hoverElements = document.querySelectorAll('button, a, .item');
+    hoverElements.forEach(el => {
+      el.addEventListener('mouseenter', () => cursorFollower.classList.add('hover-active'));
+      el.addEventListener('mouseleave', () => cursorFollower.classList.remove('hover-active'));
+    });
+  } else {
+    // Se for celular/tablet, esconde o cursor customizado para não travar o dedo
+    customCursor.style.display = 'none';
+    cursorFollower.style.display = 'none';
+  }
+
+  // --- Lógica do Easter Egg ---
+  let clickCount = 0;
+  let clickTimeout;
+
+  if (footerTrigger) {
+    footerTrigger.addEventListener('click', () => {
+      clickCount++;
+      
+      // Reseta a contagem se a pessoa demorar mais de 1 segundo entre um clique e outro
+      clearTimeout(clickTimeout);
+      clickTimeout = setTimeout(() => {
+        clickCount = 0;
+      }, 1000);
+
+      // Se der 3 cliques rápidos...
+      if (clickCount === 3) {
+        // Liga (ou desliga) o ruído na tela
+        noiseOverlay.classList.toggle('active');
+        
+        // Tremilique do glitch apenas no eixo X (lados), sem mexer na opacidade!
+        // O clearProps garante que ele volta pro lugar exato no final.
+        gsap.fromTo(footerTrigger, 
+          { x: -10 }, 
+          { x: 10, duration: 0.05, yoyo: true, repeat: 5, clearProps: "x" }
+        );
+        
+        clickCount = 0; // Zera para poder desligar depois
+      }
+    });
+  }
 });
